@@ -1,0 +1,15 @@
+package sp.microserv.usuarios.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import sp.microserv.usuarios.model.service.IUsuarioService;
+
+@RestController
+public class UsuarioController {
+
+	
+	
+	@Autowired
+	private IUsuarioService usuarioService;
+}

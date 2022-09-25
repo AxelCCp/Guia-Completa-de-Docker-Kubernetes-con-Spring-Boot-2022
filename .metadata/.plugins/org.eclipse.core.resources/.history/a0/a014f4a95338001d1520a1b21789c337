@@ -1,0 +1,46 @@
+package sp.microserv.usuarios.model.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import sp.microserv.usuarios.model.dao.IUsuarioDao;
+import sp.microserv.usuarios.model.entity.Usuario;
+
+@Service
+public class UsuarioServiceImpl implements IUsuarioService{
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Usuario> listar() {
+		// TODO Auto-generated method stub
+		return (List<Usuario>) usuarioDao.findAll();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<Usuario> porId(Long id) {
+		// TODO Auto-generated method stub
+		return usuarioDao.findById(id);
+	}
+
+	@Override
+	@Transactional
+	public Usuario guardar(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return usuarioDao.save(usuario);
+	}
+
+	@Override
+	@Transactional
+	public void eliminar(Long id) {
+		// TODO Auto-generated method stub
+		usuarioDao.deleteById(id);
+	}
+
+	@Autowired
+	private IUsuarioDao usuarioDao;
+}

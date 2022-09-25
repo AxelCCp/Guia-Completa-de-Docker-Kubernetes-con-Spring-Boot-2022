@@ -1,0 +1,5 @@
+package sp.microserv.usuarios.controllers;
+
+public class UsuarioController {
+
+}

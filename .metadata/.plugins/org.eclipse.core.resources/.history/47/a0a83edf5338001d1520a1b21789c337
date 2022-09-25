@@ -1,0 +1,29 @@
+package sp.microserv.usuarios.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import sp.microserv.usuarios.model.entity.Usuario;
+import sp.microserv.usuarios.model.service.IUsuarioService;
+
+@RestController
+public class UsuarioController {
+
+	@GetMapping("/listar")
+	public List<Usuario>listar(){
+		return usuarioService.listar();
+	}
+	
+	@GetMapping("/{id}"){
+		public Usuario (@PathVariable Long id) {
+			return usuarioService.detalle(id);
+		}
+	}
+	
+	@Autowired
+	private IUsuarioService usuarioService;
+}

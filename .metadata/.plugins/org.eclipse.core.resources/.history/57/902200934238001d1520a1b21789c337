@@ -1,0 +1,5 @@
+package sp.microserv.usuarios.model.service;
+
+public interface IUsuarioService {
+
+}
