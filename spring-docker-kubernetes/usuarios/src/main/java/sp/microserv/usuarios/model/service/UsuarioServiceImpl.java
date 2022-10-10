@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import sp.microserv.usuarios.model.dao.IUsuarioDao;
 import sp.microserv.usuarios.model.entity.Usuario;
 
+//CLASE 24
+//1.-METODO PREPARADO DESDE EL DAO 
+
 @Service
 public class UsuarioServiceImpl implements IUsuarioService{
 
@@ -40,7 +43,25 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		// TODO Auto-generated method stub
 		usuarioDao.deleteById(id);
 	}
-
+	
+	//1
+	@Override
+	public Optional<Usuario> porEmail(String email) {
+		// TODO Auto-generated method stub
+		//return usuarioDao.findByEmail(email);
+		return usuarioDao.encontrarPorEmail(email);
+	}
+	
+	@Override
+	public boolean existePorEmail(String email) {
+		// TODO Auto-generated method stub
+		return usuarioDao.existsByEmail(email);
+	}
+	
 	@Autowired
 	private IUsuarioDao usuarioDao;
+
+	
+
+	
 }

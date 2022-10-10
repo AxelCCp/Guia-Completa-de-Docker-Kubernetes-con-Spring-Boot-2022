@@ -1,5 +1,0 @@
-package sp.microserv.usuarios.model.dao;
-
-public interface IUsuarioDao {
-
-}

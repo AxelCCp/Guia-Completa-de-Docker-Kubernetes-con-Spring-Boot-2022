@@ -1,11 +1,17 @@
 package sp.microserv.usuarios.controllers;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,15 +41,38 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/crear")
-	public ResponseEntity<?> crear(@RequestBody Usuario usuario){
+	public ResponseEntity<?> crear(@Valid @RequestBody Usuario usuario, BindingResult result){
+		
+		if(result.hasErrors()) {
+			Map<String,String>errores = new HashMap<>();
+			result.getFieldErrors().forEach(err->{
+				errores.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
+			});
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
+		}
+		//SE MOVIÓ DEBAJO DEL IF DE ARRIBA, PARA Q NO DE ERROR DE NULL POINTER EXCEPTION SI SE MANDA UN ARRAY VACÍO.
+		//if(!usuario.getEmail().isEmpty() && usuarioService.porEmail(usuario.getEmail()).isPresent()) {
+				if(!usuario.getEmail().isEmpty() && usuarioService.existePorEmail(usuario.getEmail())) {
+					//ES COMO UN MAP PERO SOLO ALMACENA UNA KEY Y UN VALUE
+					return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("mensaje", "Ya existe un usuario con ese email"));
+				}
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.guardar(usuario));
 	}
 	
 	@PutMapping("/editar/{id}")
-	public ResponseEntity<?>editar(@RequestBody Usuario usuario, @PathVariable Long id){
+	public ResponseEntity<?>editar(@Valid @RequestBody Usuario usuario, BindingResult result, @PathVariable Long id){
+		if(result.hasErrors()) {
+			return errores(result);
+		}
 		Optional<Usuario> o = usuarioService.porId(id); 
 		if(o.isPresent()){
 			Usuario usuarioDb = o.get();
+			//
+			if(!usuario.getEmail().isEmpty() && !usuario.getEmail().equalsIgnoreCase(usuarioDb.getEmail()) && usuarioService.porEmail(usuario.getEmail()).isPresent()) {
+				//ES COMO UN MAP PERO SOLO ALMACENA UNA KEY Y UN VALUE
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("mensaje", "Ya existe un usuario con ese email"));
+			}
+			//
 			usuarioDb.setNombre(usuario.getNombre());
 			usuarioDb.setEmail(usuario.getEmail());
 			usuarioDb.setPassword(usuario.getPassword());
@@ -62,6 +91,15 @@ public class UsuarioController {
 		return ResponseEntity.notFound().build();
 	}
 	
+	//----------
+	private ResponseEntity<?>errores(BindingResult result){
+		Map<String,String>errores = new HashMap<>();
+		result.getFieldErrors().forEach(err->{
+			errores.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
+		});
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
+	}
+	//----------
 	
 	@Autowired
 	private IUsuarioService usuarioService;
