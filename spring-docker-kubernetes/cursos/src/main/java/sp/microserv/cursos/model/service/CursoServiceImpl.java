@@ -2,6 +2,7 @@ package sp.microserv.cursos.model.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -96,11 +97,32 @@ public class CursoServiceImpl implements ICursoService{
 		return 	Optional.empty();
 	}
 	
+	//ESTE MÉTODO SE USA EN EL REST  DETALLE, REEMPLAZANDOLO POR EL PORID()
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<Curso> porIdConUsuarios(Long id) {
+		// TODO Auto-generated method stub
+		Optional<Curso>o = cursoDao.findById(id);
+		if(o.isPresent()) {
+			Curso curso = o.get();
+			//SE VALIDA SI LA LISTA DE LOS USUARIOS EN EL CURSO, ESTÁ VACÍA O NO.
+			if(curso.getCursoUsuarios().isEmpty() == false) {
+				List<Long>ids = curso.getCursoUsuarios().stream().map(cursoUsuarios -> cursoUsuarios.getUsuarioId()).collect(Collectors.toList());
+				List<Usuario>usuarios = usuarioClientFeign.obtenerAlumnosPorCurso(ids);
+				curso.setUsuarios(usuarios);
+			}
+			return Optional.of(curso);
+		}
+		return Optional.empty();
+	}
+	
 	@Autowired
 	private ICursoDao cursoDao;
 	
 	@Autowired
 	private IUsuarioClientFeign usuarioClientFeign;
+
+	
 
 
 }

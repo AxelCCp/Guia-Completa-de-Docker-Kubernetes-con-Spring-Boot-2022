@@ -16,7 +16,7 @@ public interface ICursoService {
 	Optional<Usuario>asinarUsuario(Usuario usuario, Long cursoId);  //ASIGNA UN USUARIO EXISTENTE EN LA BBDD MYSQL DEL MICRO USUARIOS. 
 	Optional<Usuario>crearUsuario(Usuario usuario, Long cursoId);   //PARA USUARIOS Q TODAVÍA ON EXISTEN EN LA BBDD.
 	Optional<Usuario>eliminarUsuario(Usuario usuario, Long cursoId); //ELIMINA A UN USUARIO DE UN CURSO.
-		
-	
+	//CLASE40
+	Optional<Curso>porIdConUsuarios(Long id);
 	
 }

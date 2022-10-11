@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import sp.microserv.usuarios.model.entity.Usuario;
 import sp.microserv.usuarios.model.service.IUsuarioService;
@@ -89,6 +90,14 @@ public class UsuarioController {
 			return ResponseEntity.noContent().build();
 		}
 		return ResponseEntity.notFound().build();
+	}
+	
+	//CLASE39  //ESTE MÉTODO SERÁ USADO POR EL MICROSERVICIO CURSO.
+	//SE ENVÍA LA LISTA COMO UN PARAMETRO DEL REQUEST Y SE RECIVE CON @REQUESPARAM. SI FUESE POST , SERÍA REQUESTBODY. 
+	//EN POSTMAN EN PARAMS, PONE LA KEY ids Y SE LE PASAN LOS IDS DE ESTA FORMA  1,3,4,5
+	@GetMapping("/usuarios-por-curso")
+	public ResponseEntity<?>obtenerAlumnosPorCurso(@RequestParam List<Long>ids){
+		return ResponseEntity.status(HttpStatus.OK).body(usuarioService.listarPorIds(ids));
 	}
 	
 	//----------

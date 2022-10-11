@@ -11,6 +11,8 @@ import sp.microserv.usuarios.model.entity.Usuario;
 //2.-GUARDAR PARA EDITAR E INSERTAR...DEVUELVE UN USUARIO PARA MOSTRARLO.
 //CLASE29
 //3.-MÉTODO PREPARADO... ESTE ESTÁ EN EL DAO.
+//CLASE39
+//4.-MÉTODO PARA LISTAR TODOS LOS USUARIOS SEGÚN EL ID.... ESTO PARA LA LISTA DE USUARIOS DEL CURSO. RECIBE UN ARREGLO DE IDS.
 
 public interface IUsuarioService {
 
@@ -26,6 +28,9 @@ public interface IUsuarioService {
 	Optional<Usuario>porEmail(String email);
 	
 	boolean existePorEmail(String email);
+	
+	//4
+	List<Usuario>listarPorIds(Iterable<Long> ids);
 	
 	
 }

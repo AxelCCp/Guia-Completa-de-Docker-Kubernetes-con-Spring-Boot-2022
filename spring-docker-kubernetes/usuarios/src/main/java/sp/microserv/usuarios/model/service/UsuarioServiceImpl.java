@@ -58,8 +58,16 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		return usuarioDao.existsByEmail(email);
 	}
 	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Usuario> listarPorIds(Iterable<Long> ids) {
+		// TODO Auto-generated method stub
+		return (List<Usuario>) usuarioDao.findAllById(ids);
+	}
 	@Autowired
 	private IUsuarioDao usuarioDao;
+
+	
 
 	
 
