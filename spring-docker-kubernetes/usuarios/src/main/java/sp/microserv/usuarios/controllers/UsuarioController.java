@@ -83,7 +83,7 @@ public class UsuarioController {
 	}
 	
 	@DeleteMapping("/eliminar/{id}")
-	public ResponseEntity<?>eliminar(Long id){
+	public ResponseEntity<?>eliminar(@PathVariable Long id){
 		Optional<Usuario> o = usuarioService.porId(id); 
 		if(o.isPresent()){
 			usuarioService.eliminar(id);

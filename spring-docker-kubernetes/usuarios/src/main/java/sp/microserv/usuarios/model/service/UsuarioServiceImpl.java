@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import sp.microserv.usuarios.feignClients.ICursoFeignClient;
 import sp.microserv.usuarios.model.dao.IUsuarioDao;
 import sp.microserv.usuarios.model.entity.Usuario;
 
@@ -42,6 +43,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	public void eliminar(Long id) {
 		// TODO Auto-generated method stub
 		usuarioDao.deleteById(id);
+		cursoFeignClient.eliminarCursoUsuario(id);
 	}
 	
 	//1
@@ -64,8 +66,12 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		// TODO Auto-generated method stub
 		return (List<Usuario>) usuarioDao.findAllById(ids);
 	}
+	
 	@Autowired
 	private IUsuarioDao usuarioDao;
+	
+	@Autowired //CLASE 42
+	private ICursoFeignClient cursoFeignClient;
 
 	
 

@@ -116,11 +116,21 @@ public class CursoServiceImpl implements ICursoService{
 		return Optional.empty();
 	}
 	
+	//CLASE41
+	@Override
+	@Transactional
+	public void eliminarCursoUsuario(Long id) {
+		// TODO Auto-generated method stub
+		cursoDao.eliminarCursoUsuarioPorId(id);
+	}
+	
 	@Autowired
 	private ICursoDao cursoDao;
 	
 	@Autowired
 	private IUsuarioClientFeign usuarioClientFeign;
+
+	
 
 	
 

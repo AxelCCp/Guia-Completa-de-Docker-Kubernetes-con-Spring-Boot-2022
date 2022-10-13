@@ -19,4 +19,7 @@ public interface ICursoService {
 	//CLASE40
 	Optional<Curso>porIdConUsuarios(Long id);
 	
+	//CLASE41
+	void eliminarCursoUsuario(Long id);
+	
 }

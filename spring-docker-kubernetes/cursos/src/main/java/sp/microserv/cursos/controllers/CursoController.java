@@ -124,6 +124,15 @@ public class CursoController {
 		}
 	}
 	
+	//CLASE41
+	@DeleteMapping("/eliminar-curso-usuario/{id}")
+	public ResponseEntity<?>eliminarCursoUsuario(@PathVariable Long id){
+		cursoService.eliminarCursoUsuario(id);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		
+	}
+	
+	
 	//----------
 	private ResponseEntity<?>errores(BindingResult result){
 		Map<String,String>errores = new HashMap<>();
