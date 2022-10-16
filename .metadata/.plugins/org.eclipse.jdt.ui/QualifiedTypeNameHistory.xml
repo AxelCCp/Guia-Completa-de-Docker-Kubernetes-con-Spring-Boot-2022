@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="sp.microserv.usuarios.model.dao.IUsuarioDao"/>
     <fullyQualifiedTypeName name="sp.microserv.usuarios.model.service.IUsuarioService"/>
-    <fullyQualifiedTypeName name="sp.microserv.usuarios.model.entity.Usuario"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
@@ -53,4 +52,5 @@
     <fullyQualifiedTypeName name="org.springframework.cloud.openfeign.FeignClient"/>
     <fullyQualifiedTypeName name="sp.microserv.usuarios.feignClients.ICursoFeignClient"/>
     <fullyQualifiedTypeName name="org.springframework.cloud.openfeign.EnableFeignClients"/>
+    <fullyQualifiedTypeName name="sp.microserv.usuarios.model.entity.Usuario"/>
 </qualifiedTypeNameHistroy>

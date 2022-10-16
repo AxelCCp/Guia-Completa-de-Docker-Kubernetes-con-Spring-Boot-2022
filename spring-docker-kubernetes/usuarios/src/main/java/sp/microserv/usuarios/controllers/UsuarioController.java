@@ -27,8 +27,8 @@ import sp.microserv.usuarios.model.service.IUsuarioService;
 public class UsuarioController {
 
 	@GetMapping("/listar")
-	public List<Usuario>listar(){
-		return usuarioService.listar();
+	public Map<String,List<Usuario>>listar(){
+		return Collections.singletonMap("usuarios", usuarioService.listar());
 	}
 	
 	@GetMapping("/detalle/{id}")
