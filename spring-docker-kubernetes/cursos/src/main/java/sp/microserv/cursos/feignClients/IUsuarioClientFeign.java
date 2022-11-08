@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import sp.microserv.cursos.model.Usuario;
 
-@FeignClient(name="usuarios",url="localhost:8001")
+//CLASE 70
+//1.- SE CAMBIA EL localhost POR EL NOMBRE QUE SE LE VA A DAR AL CONTENEDOR DOCKER. EN EL OTRO MICROSERVICIO SE HACE LO MISMO.
+
+@FeignClient(name="usuarios",url="usuarios:8001")
 public interface IUsuarioClientFeign {
 	
 	
