@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cursos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cursos
+  template:
+    metadata:
+      labels:
+        app: cursos
+    spec:
+      containers:
+      - image: 4xe1/cursos:latest
+        name: cursos
+        ports:
+        - containerPort: 8002

@@ -9,6 +9,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -26,6 +28,16 @@ import sp.microserv.usuarios.model.service.IUsuarioService;
 @RestController
 public class UsuarioController {
 
+	//CLASE 136 --------------------------
+	@Autowired 
+	private ApplicationContext context;
+	//PARA SIMULAR UN QUIEBRE DE LA APP
+	@GetMapping("/crash")
+	public void crash() {
+		((ConfigurableApplicationContext)context).close();
+	}
+	//-------------------------- CLASE 136 
+	
 	@GetMapping("/listar")
 	public Map<String,List<Usuario>>listar(){
 		return Collections.singletonMap("usuarios", usuarioService.listar());
