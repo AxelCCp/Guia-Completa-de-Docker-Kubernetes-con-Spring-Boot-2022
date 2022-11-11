@@ -3827,3 +3827,4 @@ Caused by: org.eclipse.core.runtime.OperationCanceledException: null
 2022-11-09 21:07:48,291 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2022-11-09 21:07:48,291 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
 2022-11-09 21:07:48,291 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Fanta\Documents\9.-DOCKER_Y_KUBERNETES_CON_SPRING\spring-docker-kubernetes\usuarios\src\test\resources
+2022-11-10 12:48:10,678 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

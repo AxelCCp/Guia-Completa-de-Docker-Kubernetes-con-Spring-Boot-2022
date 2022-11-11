@@ -22,3 +22,14 @@ spec:
             value: sasa
           - name:  MYSQL_DATABASE
             value: msvc_usuarios
+        volumeMounts:
+          - name: data-mysql
+            mountPath: /var/lib/mysql  
+      volumes:
+        - name: data-mysql
+          #hostPath:     COMENTO ESTE PARA USAR EL VOLUME PERSISTENT AL CUAL SE LLEGA A TRAVÉS DEL CLAIM
+            #path: /var/lib/mysql
+            #type: DirectoryOrCreate
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+            
