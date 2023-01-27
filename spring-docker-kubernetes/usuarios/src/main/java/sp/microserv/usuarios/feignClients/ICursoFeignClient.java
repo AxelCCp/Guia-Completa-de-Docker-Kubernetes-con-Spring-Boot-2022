@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 //3.-SE MODIFICA LA CONEXIÓN DE FEIGN. EL host.docker.internal SE USABA YA QUE USUARIOS LEVANTABA EN CONTENEDOR MIENTRAS QUE CURSOS LEVANTABA EN LOCAL. Y AHORA..
 //..COMO LOS DOS MICROSERVICIOS VAN A LEVANTAR EN CONTENEDOR YA NO SE USA host.docker.internal ,  SINÓ QUE SE PONE EL NOMBRE QUE SE LE VA A PONER AL CONTENEDOR..
 //..DEL MICROSERVICIO CURSOS. EN EL FEIGN DEL OTRO MICROSERVICIO SE HACE LO MISMO.
+//CLASE 156
+//4.-MODIFICA FEIGN YA Q SE VA A USAR SPRING CLOUD KUBERNETES.
 
 //1
 //@FeignClient(name="cursos", url="localhost:8002")   //PARA CONECTAR DIRECTAMENTE CON EL MICROSERVICIO.
@@ -18,7 +20,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 //@FeignClient(name="cursos", url="host.docker.internal:8002")
 
 //3
-@FeignClient(name="cursos", url="cursos:8002")
+//@FeignClient(name="cursos", url="cursos:8002")
+
+//4
+@FeignClient(name="cursos")
 public interface ICursoFeignClient {
 	
 	@DeleteMapping("/eliminar-curso-usuario/{id}")

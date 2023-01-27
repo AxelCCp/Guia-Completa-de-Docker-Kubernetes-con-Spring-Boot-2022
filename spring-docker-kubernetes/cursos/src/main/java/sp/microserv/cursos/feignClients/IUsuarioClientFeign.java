@@ -14,7 +14,14 @@ import sp.microserv.cursos.model.Usuario;
 //CLASE 70
 //1.- SE CAMBIA EL localhost POR EL NOMBRE QUE SE LE VA A DAR AL CONTENEDOR DOCKER. EN EL OTRO MICROSERVICIO SE HACE LO MISMO.
 
-@FeignClient(name="usuarios",url="usuarios:8001")
+//CLASE 156
+//2.-SE MODIFICA FEIGN PARA USAR SPRING CLOUD KUBERNETES
+
+//1
+//@FeignClient(name="usuarios",url="usuarios:8001")
+
+//2
+@FeignClient(name="usuarios")
 public interface IUsuarioClientFeign {
 	
 	
